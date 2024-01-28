@@ -1,7 +1,7 @@
 name: Tests and Code Coverage Back
 on:
   push:
-    branches: [ "Develop" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 jobs:

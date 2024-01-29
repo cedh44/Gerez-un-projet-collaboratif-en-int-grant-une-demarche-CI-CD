@@ -13,7 +13,7 @@ jobs:
     defaults:
       run:
         #répertoire de travail
-        working-directory: ./back
+        working-directory: back
     steps:
       - run: echo "Launching Mvn Test on Backend source code"
       - uses: actions/checkout@v3

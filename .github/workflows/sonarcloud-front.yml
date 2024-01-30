@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
+        #répertoire de travail
         working-directory: front
     steps:
+      #checkout / download des sources et utilisation de nodejs 16
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Set up Node.js
@@ -19,8 +21,10 @@ jobs:
         with:
           node-version: "16"
           cwd: "front"
+      #installation des dépendances
       - name: install dependencies
         run: npm install
+      #scan de sonarcloud (le projet est défini dans le fichier sonar-project.properties)
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:

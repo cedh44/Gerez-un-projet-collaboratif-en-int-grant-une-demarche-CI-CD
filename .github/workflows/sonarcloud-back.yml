@@ -11,8 +11,9 @@ jobs:
     defaults:
       run:
         #répertoire de travail
-        working-directory: ./back
+        working-directory: back
     steps:
+      #checkout / download des sources et utilisation du jdk17
       - name: Checkout code
         uses: actions/checkout@v3
         with:
@@ -34,6 +35,7 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/back/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+      #Maven verify du projet (compilation, tests unitaires et intégration, packaging des sources) sur le projet sonar cedh44_back-bobapp
       - name: Build and analyze backend
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

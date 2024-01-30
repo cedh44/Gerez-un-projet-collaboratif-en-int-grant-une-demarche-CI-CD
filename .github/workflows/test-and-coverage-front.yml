@@ -21,6 +21,7 @@ jobs:
         node-version: [16.x]
 
     steps:
+      #checkout / download des sources et utilisation de nodejs
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1

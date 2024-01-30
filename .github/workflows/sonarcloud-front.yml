@@ -10,33 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        #répertoire de travail
-        working-directory: ./front
+        working-directory: front
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
-      - name: Cache SonarCloud packages
-        uses: actions/cache@v3
+          node-version: "16"
+          cwd: "front"
+      - name: install dependencies
+        run: npm install
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
         with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-      - name: Cache Angular packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/front/package-lock.json') }}
-          restore-keys: ${{ runner.os }}-npm
-      - name: Build and analyze frontend
+          projectBaseDir: front
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          npm install
-          ng sonar-scanner

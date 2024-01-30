@@ -45,10 +45,10 @@ jobs:
       - run: echo "Total coverage ${{ steps.jacoco.outputs.coverage-overall }}"
       - run: echo "Changed Files coverage ${{ steps.jacoco.outputs.coverage-changed-files }}"
       #ajout du résultat du coverage dans git
-      - name: Commit Code Coverage Report
-        run: |
-          git config --global user.email "cedh@posteo.net"
-          git config --global user.name "cedh44"
-          git add .
-          git commit -m "Add jacoco code coverage report"
-          git push
+      #- name: Commit Code Coverage Report
+      #  run: |
+      #    git config --global user.email "cedh@posteo.net"
+      #    git config --global user.name "cedh44"
+      #    git add .
+      #    git commit -m "Add jacoco code coverage report"
+      #    git push

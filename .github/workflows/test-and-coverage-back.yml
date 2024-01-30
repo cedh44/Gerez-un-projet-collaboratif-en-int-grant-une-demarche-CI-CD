@@ -26,8 +26,6 @@ jobs:
       #lance le clean test du back
       - name: Build with Maven
         run: mvn clean test --file pom.xml
-      #affiche le status
-      - run: echo "🍏Mvn Test's status is ${{ job.status }}."
       #coverage du back
       - name: Add coverage
         id: jacoco
@@ -55,3 +53,6 @@ jobs:
       #    git add .
       #    git commit -m "Add jacoco code coverage report"
       #    git push
+
+      #affiche le status à la fin
+      - run: echo "🍏Mvn Test's status is ${{ job.status }}."

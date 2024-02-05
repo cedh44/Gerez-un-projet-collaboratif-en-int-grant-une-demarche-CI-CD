@@ -40,4 +40,5 @@ jobs:
           git add coverage/bobapp
           git commit -m "Add Karma code coverage report"
           git push origin develop
+      #affiche le status à la fin
       - run: echo "🍏Npm run test-coverage's status is ${{ job.status }}."

@@ -1,12 +1,11 @@
 name: Docker Image Back
+#workflow se lance lors d'une pull_request sur la branche main
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  docker:
+  docker_backend:
     runs-on: ubuntu-latest
     steps:
       #checkout / download des sources

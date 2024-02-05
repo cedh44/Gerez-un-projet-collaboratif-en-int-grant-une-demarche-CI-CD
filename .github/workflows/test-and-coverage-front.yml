@@ -1,25 +1,21 @@
 name: Tests and Code Coverage Front
 
-#workflow se lance lors d'ub push ou pull_request sur la branche main
+#workflow se lance lors d'une pull_request sur la branche main
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_frontend:
     runs-on: ubuntu-latest
     defaults:
       run:
         #répertoire de travail
-        working-directory: ./front 
-
+        working-directory: ./front
     strategy:
       matrix:
         #version de node
         node-version: [16.x]
-
     steps:
       #checkout / download des sources et utilisation de nodejs
       - uses: actions/checkout@v3
@@ -34,11 +30,14 @@ jobs:
       - name: test coverage
         run: npm run test-coverage
       #ajout du résultat du coverage dans git
-      #- name: Commit Code Coverage Report
-      #  run: |
-      #    git pull
-      #    git config --global user.email "cedh@posteo.net"
-      #    git config --global user.name "cedh44"
-      #    git add coverage
-      #    git commit -m "Add karma code coverage report"
-      #    git push
+      - name: Commit Karma Code Coverage Report
+        run: |
+          git config --global user.email "cedh@posteo.net"
+          git config --global user.name "cedh44"
+          git fetch
+          git checkout develop
+          git pull origin develop
+          git add coverage/bobapp
+          git commit -m "Add Karma code coverage report"
+          git push origin develop
+      - run: echo "🍏Npm run test-coverage's status is ${{ job.status }}."

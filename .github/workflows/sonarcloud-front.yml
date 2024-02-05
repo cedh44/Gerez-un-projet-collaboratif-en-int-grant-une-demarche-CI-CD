@@ -1,11 +1,11 @@
 name: SonarCloud Front
+#workflow se lance lors d'une pull_request sur la branche main
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
-  build_frontend:
+  sonar_frontend:
     name: Build and analyze frontend
     runs-on: ubuntu-latest
     defaults:
